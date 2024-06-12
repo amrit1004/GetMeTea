@@ -1,13 +1,12 @@
 "use client"
 import React from "react";
 import { useSession, signIn, signOut } from "next-auth/react"
-const Login = () => { 
-  const { data: session } = useSession()
-  if(session) {
-    return <>
-      Signed in as {session.user.email} <br/>
-      <button onClick={() => signOut()}>Sign out</button>
-    </>
+import { useRouter } from "next/navigation";
+   const Login = () => { 
+    const { data: session } = useSession()
+    if(session) {
+      const router = useRouter();
+      router.push("/dashboard")
   }
   return (
     <div className="container mx-auto text-white py-14">
@@ -236,7 +235,8 @@ const Login = () => {
         </button>
       </div>
     </div>
+    
   );
-};
+   }
 
 export default Login;
