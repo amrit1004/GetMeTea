@@ -35,7 +35,7 @@ const Navbar = () => {
               id="dropdownDefaultButton"
               data-dropdown-toggle="dropdown"
               className="text-white mx-4 
-bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               type="button"
             >
               Welcome {session.user.email}
@@ -49,8 +49,8 @@ bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-30
                 <path
                   stroke="currentColor"
                   strokeLinecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="m1 1 4 4 4-4"
                 />
               </svg>
@@ -67,16 +67,15 @@ bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-30
               >
                 <li>
                   <Link
-                    href="/dashboard"
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    href="/dashboard" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     Dashboard
+                    
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     Your Page
                   </Link>
@@ -84,8 +83,7 @@ bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-30
                 <li>
                   <Link
                     onClick={() => signOut()}
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     Sign out
                   </Link>
@@ -93,7 +91,8 @@ bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-30
               </ul>
             </div>
           </>
-        )}
+        )
+      }
         {!session && (
           <Link href={"/login"}>
             <button
