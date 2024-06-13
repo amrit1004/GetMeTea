@@ -15,13 +15,6 @@ const Navbar = () => {
         <img src="/tea2.gif" width={40} alt="" />
         <span>Get Me a Tea</span>
       </Link>
-      {/* <ul className="flex justify-between gap-4">
-        <li>Home</li>
-        <li>About</li>
-        <li>Projects</li>
-        <li>Sign Up</li>
-        <li>Login</li>
-    </ul> */}
       <div className="relative">
         {session && (
           <>
@@ -29,9 +22,14 @@ const Navbar = () => {
               onClick={() => setShowdropdown(!showdropdown)}
               onBlur={()=>{
                 setTimeout(() => {
-                   setShowdropdown(false);
+                  setShowdropdown(false)
                 }, 100);
               }}
+              // onBlur={()=>{
+              //   setTimeout(() => {
+              //      setShowdropdown(false);
+              //   }, 100);
+              // }}
               id="dropdownDefaultButton"
               data-dropdown-toggle="dropdown"
               className="text-white mx-4 
