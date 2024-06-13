@@ -20,11 +20,11 @@ const Navbar = () => {
           <>
             <button
               onClick={() => setShowdropdown(!showdropdown)}
-              onBlur={()=>{
-                setTimeout(() => {
-                  setShowdropdown(false)
-                }, 100);
-              }}
+              // onBlur={()=>{
+              //   setTimeout(() => {
+              //     setShowdropdown(false)
+              //   }, 100);
+              // }}
               // onBlur={()=>{
               //   setTimeout(() => {
               //      setShowdropdown(false);
