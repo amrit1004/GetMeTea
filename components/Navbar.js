@@ -16,7 +16,7 @@ const Navbar = () => {
         <span>Get Me a Tea</span>
       </Link>
       <div className="relative">
-        {session && (
+        {session && 
           <>
             <button
               onClick={() => setShowdropdown(!showdropdown)}
@@ -73,7 +73,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <Link
-                    href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    href={`/${session.user.name}`} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     Your Page
                   </Link>
@@ -89,7 +89,7 @@ const Navbar = () => {
               </ul>
             </div>
           </>
-        )
+        
       }
         {!session && (
           <Link href={"/login"}>
