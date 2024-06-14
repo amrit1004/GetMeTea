@@ -3,8 +3,3 @@
 @tailwind utilities;
 
 /* global.css */
-.dark {
-    background-color: #1a202c; /* Example dark background color */
-    color: #a0aec0; /* Example dark text color */
-  }
-  
