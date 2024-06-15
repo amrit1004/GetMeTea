@@ -1,10 +1,19 @@
 "use client"
-import React from 'react'
+import React ,{useState} from 'react'
 import Script from 'next/script'
+import { initiate } from '@/actions/useractions'
+import { useSession } from 'next-auth/react'
 const PaymentPage = ({username}) => {
-    const pay = (amount , orderId) =>{
+   //const {data: session } = useSession()
+   const [paymentform, setPaymentform] = useState({})
+     const handleChange = (e) =>{
+      setPaymentform({...paymentform ,[e.target.name]: e.target.value})
+     }
+    const pay = async(amount) =>{
+      let a = await initiate(amount ,username, paymentform)
+      let orderId = a.id
         var options = {
-            "key": process.env.KEY_ID, // Enter the Key ID generated from the Dashboard
+            "key": process.env.NEXT_PUBLIC_KEY_ID, // Enter the Key ID generated from the Dashboard
             "amount": amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
             "currency": "INR",
             "name": "Get me a Tea", //your business name
@@ -13,9 +22,9 @@ const PaymentPage = ({username}) => {
             "order_id": orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
             "callback_url": "http://localhost:3000/api/razorpay",
             "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
-                "name": "Gaurav Kumar", //your customer's name
+                "name": "Amrit Singhal", //your customer's name
                 "email": "gaurav.kumar@example.com",
-                "contact": "9000090000" //Provide the customer's phone number for better conversion rates 
+                "contact": "7302033955" //Provide the customer's phone number for better conversion rates 
             },
             "notes": {
                 "address": "Razorpay Corporate Office"
@@ -74,16 +83,16 @@ const PaymentPage = ({username}) => {
         <h2 className="my-5 text-2xl font-bold">Make a Payment</h2>
         <div className="flex flex-col gap-2">
           <div className="">
-          <input type="text"className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Name" />
+          <input onChange={handleChange} value={paymentform.name} name='name' type="text" className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Name" />
           </div>
-          <input type="text"className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Message" />
-          <input type="text"className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Amount" />
+          <input onChange={handleChange} value={paymentform.message} type="text" name='message' className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Message" />
+          <input onChange={handleChange} value={paymentform.amount} type="text" name="amount" className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Amount" />
           <button type="button" className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Pay</button>
         </div>
           <div className="flex gap-2 mt-5">
-            <button className="p-3 rounded-lg bg-slate-800" onClick={()=>pay(10)}>Pay ₹10</button>
-            <button className="p-3 rounded-lg bg-slate-800" onClick={()=>pay(0)}>Pay ₹20</button>
-            <button className="p-3 rounded-lg bg-slate-800" onClick={()=>pay(30)}>Pay ₹30</button>
+            <button className="p-3 rounded-lg bg-slate-800" onClick={()=>pay(1000)}>Pay ₹10</button>
+            <button className="p-3 rounded-lg bg-slate-800" onClick={()=>pay(2000)}>Pay ₹20</button>
+            <button className="p-3 rounded-lg bg-slate-800" onClick={()=>pay(3000)}>Pay ₹30</button>
           </div>
         </div>
       </div>
