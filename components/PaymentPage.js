@@ -6,9 +6,14 @@ import { useSession } from 'next-auth/react'
 const PaymentPage = ({username}) => {
    //const {data: session } = useSession()
    const [paymentform, setPaymentform] = useState({})
+   const [currentUser, setcurrentUser] = useState({})
      const handleChange = (e) =>{
       setPaymentform({...paymentform ,[e.target.name]: e.target.value})
      }
+    const getData = async (params) =>{
+      let u = await fetchuser(username)
+      setcurrentUser(u);
+    } 
     const pay = async(amount) =>{
       let a = await initiate(amount ,username, paymentform)
       let orderId = a.id
