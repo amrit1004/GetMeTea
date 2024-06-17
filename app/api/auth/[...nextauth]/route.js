@@ -40,7 +40,9 @@ export const authoptions = NextAuth({
           const currentUser = await User.findOne({email :email})
          if(!currentUser){
           const newUser =  User.create({
+            
             email: user.email,
+            name : user.name ,
             username: user.email.split("@")[0],
           })
           

@@ -2,24 +2,35 @@
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import React, { useState, useEffect } from "react";
+import { fetchuser ,updateProfile } from "@/actions/useractions";
 const Dashboard = () => {
-  const { data: session } = useSession();
+  const { data: session ,update} = useSession();
   const router = useRouter();
   const [form, setForm] = useState({});
   useEffect(() => {
+    getData()
     if (!session) {
       router.push("/login");
     }
   }, [router, session]);
+  const getData = async () =>{
+    let u = await fetchuser(session.user.username)
+    setForm(u);
+  }
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+  const handleSubmit = async(e) =>{
+     update()
+     let a = updateProfile(e ,session.user.username)
+     alert("Profile Updated")
+  }
   return (
     <div className="container py-5 mx-auto">
       <h1 className="my-5 text-3xl font-bold text-center">
         Welcome to your Dashboard
       </h1>
-      <form className="max-w-2xl mx-auto">
+      <form action={handleSubmit} className="max-w-2xl mx-auto">
         <div className="my-2">
           <label
             htmlFor="name"
@@ -76,27 +87,27 @@ const Dashboard = () => {
             Profile Picture
           </label>
           <input
-            value={form.profile ? form.profile : ""}
+            value={form.profilepic ? form.profilepic : ""}
             onChange={handleChange}
             type="text"
-            name="profile"
-            id="profile"
+            name="profilepic"
+            id="profilepic"
             className="block w-full p-2 text-xs text-gray-900 placeholder-gray-400 border border-gray-600 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
         <div className="my-2">
           <label
-            htmlFor="cover"
+            htmlFor="coverpic"
             className="block mb-2 text-sm font-medium text-white"
           >
             Cover Picture
           </label>
           <input
-            value={form.cover ? form.cover : ""}
+            value={form.coverpic ? form.coverpic : ""}
             onChange={handleChange}
             type="text"
-            name="cover"
-            id="cover"
+            name="coverpic"
+            id="coverpic"
             className="block w-full p-2 text-xs text-gray-900 placeholder-gray-400 border border-gray-600 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
