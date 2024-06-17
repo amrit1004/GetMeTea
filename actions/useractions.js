@@ -21,8 +21,9 @@ export const initiate = async (amount, to_username, paymentform) => {
    })
    return x;
 }
-export const fetchuser = async()=>{
+export const fetchuser = async(username)=>{
   await connectDB();
+  console.log(username);
   let u = await User.findOne({username:username})
   let user = u.toObject({flattenObjectIds: true})
   return user;

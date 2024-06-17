@@ -1,5 +1,6 @@
 "use client"
-import React ,{useState} from 'react'
+import React ,{useState}  from 'react'
+import { useEffect } from 'react'
 import Script from 'next/script'
 import { fetchpayments, fetchuser, initiate } from '@/actions/useractions'
 import { useSession } from 'next-auth/react'
@@ -7,14 +8,20 @@ const PaymentPage = ({username}) => {
    //const {data: session } = useSession()
    const [paymentform, setPaymentform] = useState({})
    const [currentUser, setcurrentUser] = useState({})
-     const handleChange = (e) =>{
+   const [payments , setPayments] = useState([])
+   useEffect(() => {
+     getData();
+   }, [])
+   
+   const handleChange = (e) =>{
       setPaymentform({...paymentform ,[e.target.name]: e.target.value})
      }
-    const getData = async (params) =>{
+    const getData = async () =>{
       let u = await fetchuser(username)
       setcurrentUser(u);
       let db = await fetchpayments(username);
-      set
+      setPayments(db);
+      console.log(db ,u);
     } 
     const pay = async(amount) =>{
       let a = await initiate(amount ,username, paymentform)
@@ -66,24 +73,14 @@ const PaymentPage = ({username}) => {
         <div className="w-1/2 p-10 text-white rounded-lg supporters bg-slate-900">
         <h2 className="my-5 text-2xl font-bold ">Supporters</h2>
            <ul className="mx-5 text-lg">
-            <li className="flex items-center gap-2 my-2">
+            {payments.map((p ,i)=>{
+              return <li key={i} className="flex items-center gap-2 my-2">
               <img width={33} src="/man.png" alt="" />
               <span>
-              Shubham donated <span className="font-bold">$30</span> with a message "I support you bro. Lots of Love ❤️"
+              {p.name} donated <span className="font-bold">{p.amount}</span> with a message {p.message}
               </span>
-             </li>
-             <li className="flex items-center gap-2 my-2">
-              <img width={33} src="/man.png" alt="" />
-              <span>
-              Shubham donated <span className="font-bold">$30</span> with a message "I support you bro. Lots of Love ❤️"
-              </span>
-             </li>
-             <li className="flex items-center gap-2 my-2">
-              <img width={33} src="/man.png" alt="" />
-              <span>
-              Shubham donated <span className="font-bold">$30</span> with a message "I support you bro. Lots of Love ❤️"
-              </span>
-             </li>
+            </li>
+            })}
            </ul>
         </div>
         <div className="w-1/2 p-10 text-white rounded-lg makePayment bg-slate-900">

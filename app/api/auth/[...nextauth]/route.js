@@ -43,6 +43,7 @@ export const authoptions = NextAuth({
             email: user.email,
             username: user.email.split("@")[0],
           })
+          
          }
          return true;
         }
