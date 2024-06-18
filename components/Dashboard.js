@@ -3,6 +3,9 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import React, { useState, useEffect } from "react";
 import { fetchuser ,updateProfile } from "@/actions/useractions";
+import { ToastContainer ,toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { Bounce } from 'react-toastify'
 const Dashboard = () => {
   const { data: session ,update} = useSession();
   const router = useRouter();
@@ -13,6 +16,10 @@ const Dashboard = () => {
       router.push("/login");
     }
   }, [router, session]);
+  useEffect(() => {
+      
+  }, [])
+  
   const getData = async () =>{
     let u = await fetchuser(session.user?.username)
     setForm(u);
@@ -23,9 +30,22 @@ const Dashboard = () => {
   const handleSubmit = async(e) =>{
      update()
      let a = updateProfile(e ,session.user?.username)
-     alert("Profile Updated")
+     toast('Profile Updated', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+      });
   }
   return (
+    <>
+    <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light"/>
+    <ToastContainer />
     <div className="container py-5 mx-auto">
       <h1 className="my-5 text-3xl font-bold text-center">
         Welcome to your Dashboard
@@ -153,6 +173,7 @@ const Dashboard = () => {
         </div>
       </form>
     </div>
+    </>
   );
 };
 

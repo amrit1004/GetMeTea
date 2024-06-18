@@ -3,12 +3,13 @@ import Razorpay from "razorpay";
 import Payment from "@/models/Payment";
 import connectDB from "@/db/connectDb";
 import User from "@/models/User";
-import { appendMutableCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 export const initiate = async (amount, to_username, paymentform) => {
   await connectDB();
+  let user = await User.findOne({username: to_username})
+  const secret = user.razorpaysecret
   var instance = new Razorpay({
-    key_id: process.env.NEXT_PUBLIC_KEY_ID ,
-    key_secret: process.env.KEY_SECRET,
+    key_id: user.razorpayid,
+    key_secret:secret,
   });
     let options = {
     amount: Number.parseInt(amount) ,
