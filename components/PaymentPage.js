@@ -3,14 +3,33 @@ import React ,{useState}  from 'react'
 import { useEffect } from 'react'
 import Script from 'next/script'
 import { fetchpayments, fetchuser, initiate } from '@/actions/useractions'
-import { useSession } from 'next-auth/react'
+import { useSearchParams } from 'next/navigation'
+import { ToastContainer ,toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { Bounce } from 'react-toastify'
 const PaymentPage = ({username}) => {
    //const {data: session } = useSession()
    const [paymentform, setPaymentform] = useState({ name: '', message: '', amount: '' });
    const [currentUser, setcurrentUser] = useState({})
    const [payments , setPayments] = useState([])
+   const searchParams = useSearchParams()
    useEffect(() => {
      getData();
+   }, [])
+   useEffect(() => {
+     if(searchParams.get("paymentdone")=="true"){
+      toast('Thanks for your donation', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
+     }
    }, [])
    
    const resetForm = () => {
@@ -57,6 +76,8 @@ const PaymentPage = ({username}) => {
     }
   return (
     <>
+     <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light"/>
+     <ToastContainer />
      <Script src="https://checkout.razorpay.com/v1/checkout.js"></Script>
      <div className="relative w-full cover">
         <img className="object cover w-full  h-[350] relative" src={currentUser.coverpic}  alt="Cover pic of user" />
