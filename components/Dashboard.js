@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import React, { useState, useEffect } from "react";
@@ -14,15 +14,15 @@ const Dashboard = () => {
     }
   }, [router, session]);
   const getData = async () =>{
-    let u = await fetchuser(session.user.username)
+    let u = await fetchuser(session.user?.username)
     setForm(u);
   }
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value});
   };
   const handleSubmit = async(e) =>{
      update()
-     let a = updateProfile(e ,session.user.username)
+     let a = updateProfile(e ,session.user?.username)
      alert("Profile Updated")
   }
   return (

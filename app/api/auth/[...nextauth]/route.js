@@ -34,19 +34,17 @@ export const authoptions = NextAuth({
       // }),
     ] ,
     callbacks: {
-      async signIn({ user, account, profile, email, credentials }) {
+      async signIn({ user, account, profile, email, credentials  }) {
         if(account.provider == "github"){
           await connectDB();
           const currentUser = await User.findOne({email :email})
          if(!currentUser){
           const newUser =  User.create({
-            
             email: user.email,
-            name : user.name ,
             username: user.email.split("@")[0],
+            name: profile.login
           })
-          
-         }
+          }
          return true;
         }
       } ,
