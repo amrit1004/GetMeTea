@@ -3,6 +3,7 @@ import Razorpay from "razorpay";
 import Payment from "@/models/Payment";
 import connectDB from "@/db/connectDb";
 import User from "@/models/User";
+import { appendMutableCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 export const initiate = async (amount, to_username, paymentform) => {
   await connectDB();
   var instance = new Razorpay({
@@ -29,7 +30,7 @@ export const fetchuser = async(username)=>{
 }
 export const fetchpayments = async(username) =>{
   await connectDB();
-  let payments = await Payment.find({to_user:username ,done: true}).sort({createdAt:-1}).lean()
+  let payments = await Payment.find({to_user:username ,done: true}).sort({amount:-1}).lean()
   
   return payments;
 }

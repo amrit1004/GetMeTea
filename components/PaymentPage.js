@@ -7,12 +7,14 @@ import { useSearchParams } from 'next/navigation'
 import { ToastContainer ,toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Bounce } from 'react-toastify'
+import { useRouter } from 'next/navigation'
 const PaymentPage = ({username}) => {
    //const {data: session } = useSession()
    const [paymentform, setPaymentform] = useState({ name: '', message: '', amount: '' });
    const [currentUser, setcurrentUser] = useState({})
    const [payments , setPayments] = useState([])
    const searchParams = useSearchParams()
+   const router = useRouter()
    useEffect(() => {
      getData();
    }, [])
@@ -30,6 +32,7 @@ const PaymentPage = ({username}) => {
         transition: Bounce,
         });
      }
+      router.push(`/${username}`)
    }, [])
    
    const resetForm = () => {
