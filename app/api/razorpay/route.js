@@ -7,7 +7,7 @@ export async function POST(req){
     await connectDB()
     let body = await req.formData()
     body = Object.fromEntries(body)
-    let p = Payment.findOne({oid:body.razorpay_order_id});
+    let p = await Payment.findOne({oid:body.razorpay_order_id});
     if(!p){
         return NextResponse.json({success: false , message:"Order Id not found"})
     }
