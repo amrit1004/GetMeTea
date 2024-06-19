@@ -31,7 +31,7 @@ export const fetchuser = async(username)=>{
 }
 export const fetchpayments = async(username) =>{
   await connectDB();
-  let payments = await Payment.find({to_user:username ,done: true}).sort({amount:-1}).limit(7).lean()
+  let payments = await Payment.find({to_user:username ,done: true}).sort({amount:-1}).limit(10).lean()
   
   return payments;
 }

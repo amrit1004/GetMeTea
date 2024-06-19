@@ -7,7 +7,7 @@ const Navbar = () => {
   const { data: session } = useSession();
   const [showdropdown, setShowdropdown] = useState(false);
   return (
-    <nav className="flex items-center justify-between h-16 px-4 text-white bg-gray-900">
+    <nav className="flex flex-col items-center justify-between px-4 text-white bg-gray-900 md:h-16 md:flex-row">
       <Link
         href={"/"}
         className="flex items-center justify-center text-lg font-bold logo"
