@@ -37,12 +37,12 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center space-y-3 item">
               <img className="text-black rounded-full item bg-slate-400" width={80} src="/coin.jpeg" alt="" />
               <p className="font-bold text-center">Fans want to help</p>
-              <p className="text-center ">Your fans are available for you to help you</p>
+              <p className="text-center ">Your fans are available to donate you</p>
             </div>
             <div className="flex flex-col items-center justify-center space-y-3 item">
               <img className="text-black rounded-full item bg-slate-400" width={80} src="/group.png" alt="" />
               <p className="font-bold text-center">Fans want to help</p>
-              <p className="text-center ">Your fans are available for you to help you</p>
+              <p className="text-center ">Your fans are available to collab with you and make community with you</p>
             </div>
           </div>
         </div>
