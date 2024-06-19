@@ -92,10 +92,10 @@ const PaymentPage = ({username}) => {
       <div className="flex flex-col items-center justify-center gap-2 my-24 mb-32 info">
         <div className="text-lg font-bold">@{username}</div>
       <div className="text-slate-400">
-        Creating Animated Art
+        Let's help {username} to get a Tea!
       </div>
       <div className="text-slate-400">
-        9,719 members 82.  post. 8899 release 
+         {payments.length} Payments. ₹{payments.reduce((a ,b)=> a+ b.amount , 0)} raised
       </div>
       <div className="flex gap-3 payment w-[80%] mt-11">
         <div className="w-1/2 p-10 text-white rounded-lg supporters bg-slate-900">
@@ -119,8 +119,8 @@ const PaymentPage = ({username}) => {
           <input onChange={handleChange} value={paymentform.name} name='name' type="text" className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Name" />
           </div>
           <input onChange={handleChange} value={paymentform.message} type="text" name='message' className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Message" />
-          <input onChange={handleChange} value={paymentform.amount} type="text" name="amount" className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Amount" />
-          <button onClick={()=>pay(Number.parseInt(paymentform.amount)*100)} type="button" className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 disabled:bg-slate-600 disabled:from-purple-100"  disabled = {paymentform.name?.length<3 || paymentform.message?.length<4}>Pay</button>
+          <input onChange={handleChange} value={paymentform.amount} type="number" name="amount" className="w-full p-3 rounded-lg bg-slate-800" placeholder="Enter Amount" />
+          <button onClick={()=>pay(Number.parseInt(paymentform.amount)*100)} type="button" className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 disabled:bg-slate-600 disabled:from-purple-100"  disabled = {paymentform.name?.length<3 || paymentform.message?.length<4 || paymentform.amount?.length <1}>Pay</button>
         </div>
           <div className="flex gap-2 mt-5">
             <button className="p-3 rounded-lg bg-slate-800" onClick={()=>pay(1000)}>Pay ₹10</button>
