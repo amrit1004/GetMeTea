@@ -46,7 +46,7 @@ const Dashboard = () => {
     <>
     <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light"/>
     <ToastContainer />
-    <div className="container py-5 mx-auto">
+    <div className="container px-6 py-5 mx-auto">
       <h1 className="my-5 text-3xl font-bold text-center">
         Welcome to your Dashboard
       </h1>

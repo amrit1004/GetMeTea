@@ -13,9 +13,9 @@ const Navbar = () => {
         className="flex items-center justify-center text-lg font-bold logo"
       >
         <img src="/tea2.gif" width={40} alt="" />
-        <span>Get Me a Tea</span>
+        <span className="my-3 text-xl md:text-base md:my-0">Get Me a Tea</span>
       </Link>
-      <div className="relative">
+      <div className="relative flex flex-col gap-4 md:block">
         {session && 
           <>
             <button
