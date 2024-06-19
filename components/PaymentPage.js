@@ -92,7 +92,7 @@ const PaymentPage = ({username}) => {
       <div className="flex flex-col items-center justify-center gap-2 my-24 mb-32 info">
         <div className="text-lg font-bold">@{username}</div>
       <div className="text-slate-400">
-        Let's help {username} to get a Tea!
+        Let help {username} to get a Tea!
       </div>
       <div className="text-slate-400">
          {payments.length} Payments. ₹{payments.reduce((a ,b)=> a+ b.amount , 0)} raised

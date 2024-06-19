@@ -66,7 +66,7 @@ const About = () => {
         <section className="max-w-2xl my-8 text-center">
           <h2 className="mb-2 text-3xl font-semibold text-teal-500">Join Our Community</h2>
           <p className="text-lg text-gray-700">
-            Join thousands of creators who are already benefiting from the support of their fans. Whether you're a developer, artist, musician, or any other type of creator, Get Me a Tea is here to help you succeed.
+            Join thousands of creators who are already benefiting from the support of their fans. Whether you are a developer, artist, musician, or any other type of creator, Get Me a Tea is here to help you succeed.
           </p>
         </section>
       </main>
