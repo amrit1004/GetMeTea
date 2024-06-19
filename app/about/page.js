@@ -23,8 +23,8 @@ const About = () => {
           <Image
             src="/misson.jpeg" // Replace with your image path
             alt="Our Mission"
-            width={600}
-            height={400}
+            width={400}
+            height={300}
             className="rounded-lg shadow-lg"
           />
         </div>
@@ -40,8 +40,8 @@ const About = () => {
           <Image
             src="/how-it-works.jpeg" // Replace with your image path
             alt="How It Works"
-            width={600}
-            height={400}
+            width={400}
+            height={300}
             className="rounded-lg shadow-lg"
           />
         </div>
@@ -57,8 +57,8 @@ const About = () => {
           <Image
             src="/community.jpeg" // Replace with your image path
             alt="Join Our Community"
-            width={600}
-            height={400}
+            width={400}
+            height={300}
             className="rounded-lg shadow-lg"
           />
         </div>
