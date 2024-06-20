@@ -6,7 +6,7 @@ export default function Home() {
     <div className="flex justify-center items-center text-white flex-col h-[44vh] gap-4 px-5 md:px-0 text-xs md:text-base">
         <div className="flex items-center justify-center gap-6 text-3xl font-bold md:gap-20 md:text-5xl">Buy me a Tea
           <span>
-          <img src="/tea2.gif" width = {40} alt="" />
+          <img src="/tea2.gif" width = {40} alt=""/>
           </span>
         </div>
         <p className="text-center md:text-left">
